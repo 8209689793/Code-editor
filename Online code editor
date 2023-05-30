@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Code Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .editor-pane {
+      flex: 1;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .output-pane {
+      flex: 1;
+      padding: 20px;
+      background-color: #fff;
+      overflow-y: auto;
+    }
+
+    .output-pane iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .btn-run {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      background-color: #4caf50;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="editor-pane">
+      <h1>Code Editor</h1>
+      <textarea id="codeInput" rows="10"></textarea>
+      <button class="btn-run" onclick="runCode()">Run</button>
+    </div>
+    <div class="output-pane">
+      <h1>Output</h1>
+      <iframe id="outputFrame"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function runCode() {
+      var code = document.getElementById("codeInput").value;
+      var outputFrame = document.getElementById("outputFrame").contentWindow.document;
+      outputFrame.open();
+      outputFrame.write(code);
+      outputFrame.close();
+    }
+  </script>
+</body>
+</html>
